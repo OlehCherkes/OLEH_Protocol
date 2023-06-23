@@ -23,7 +23,7 @@ static int hf_oleh_hdr_bool = -1;
 static int hf_oleh_dt_len = -1;
 static int hf_oleh_data = -1;
 
-/*   add details to the output  */
+/*  add details to the output VALS-macros   */
 static const value_string packetversions[] = {
     { 1, "Version 1" },
     { 2, "Version 2" },
@@ -31,7 +31,7 @@ static const value_string packetversions[] = {
     { 0, NULL }
 };
 
-// dissecting function
+/*  dissecting function  */
 static int dissect_oleh(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree, void *data _U_)
 {
     col_set_str(pinfo->cinfo, COL_PROTOCOL, "OLEH");    //  used to set the Wireshark Protocol column to "OLEH"
@@ -56,7 +56,7 @@ static int dissect_oleh(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree, voi
     return tvb_captured_length(tvb);
 }
 
-//  register the protocol in Wireshark
+/* register the protocol in Wireshark   */
 void proto_register_oleh(void)
 {
     static hf_register_info hf[] = {
@@ -129,7 +129,7 @@ void proto_register_oleh(void)
     proto_register_subtree_array(ett, array_length(ett));
 }
 
-//  performs dissector registration for the "oleh" protocol
+/*  performs dissector registration for the "oleh" protocol */
 void proto_reg_handoff_oleh(void)
 {
     static dissector_handle_t oleh_handle;  //  to get a handle to protocol oleh

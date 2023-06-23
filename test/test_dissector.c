@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 #define TEST_PORT    7777
-#define BUFFER_SIZE 210
+#define BUFFER_SIZE  210
 
 struct _message {
    unsigned char pck_version;
@@ -21,9 +21,10 @@ int main() {
    int s, cli_len = sizeof(cli_addr);
    char buf[BUFFER_SIZE];
    struct _message msg;
+   char *value = "Hello Oleh";
+   
    msg.pck_version = 1;
    msg.pck_data_len = 0;
-   char *value = "Hello Oleh";
 
    /* random value for flags, boolean  */
    unsigned int randomData = open("/dev/urandom", O_RDONLY);
@@ -53,7 +54,7 @@ int main() {
    
    memcpy(buf, (char*)&msg, sizeof(struct _message));
    
-   /* sending a data packet*/
+   /* sending a data packet   */
    if ( sendto(s, buf, sizeof(struct _message) + msg.pck_data_len,
                0, (struct sockaddr*)&cli_addr, cli_len) == -1 ) {
       perror("sendto");
